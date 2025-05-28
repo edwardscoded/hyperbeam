@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperBeam ($BEAM) - The Meme Coin on Hyper EVM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF4500, #FF6600, #FF8C00);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .fire-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10px) scale(1); opacity: 0; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, #FF4500, #FF6600);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6);
+        }
+
+        /* Main content */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 2rem;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 69, 0, 0.5); }
+            to { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 69, 0, 0.8); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Dragon Container */
+        .dragon-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 2rem 0;
+        }
+
+        .dragon {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF4500, #FF8C00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            animation: dragonPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes dragonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .dragon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Market Cap Display */
+        .market-cap {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid rgba(255, 69, 0, 0.5);
+        }
+
+        .market-cap-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .market-cap-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Evolution Tracker */
+        .evolution-section {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .evolution-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .milestone-bar {
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            height: 20px;
+            border-radius: 10px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .milestone-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FF6600);
+            border-radius: 10px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .milestone-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s linear infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .milestones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .milestone {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 69, 0, 0.3);
+            flex: 1;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .milestone.achieved {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .milestone-amount {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .milestone-name {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Lore Section */
+        .lore-section {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .lore-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .lore-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 69, 0, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 69, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+                letter-spacing: 0.05em;
+            }
+            
+            .dragon-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .dragon {
+                font-size: 5rem;
+            }
+            
+            .milestones {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 0.02em;
+            }
+        }
+
+        /* Evolution animation */
+        .evolution-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 69, 0, 0.9);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .evolution-text {
+            font-size: 3rem;
+            font-weight: bold;
+            animation: evolutionGlow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes evolutionGlow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fire Particles Background -->
+    <div class="fire-particles" id="fireParticles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">🔥 HYPERBEAM</div>
+        <a href="#" class="buy-button" onclick="buyBeam()">BUY $BEAM</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">HYPERBEAM</h1>
+        <p class="hero-subtitle">The Meme Coin on Hyper EVM</p>
+        
+        <div class="dragon-container">
+            <div class="dragon" id="dragon">
+                🐲
+            </div>
+        </div>
+
+        <div class="market-cap">
+            <div class="market-cap-value" id="marketCap">$15,200</div>
+            <div class="market-cap-label">Current Market Cap</div>
+        </div>
+    </section>
+
+    <!-- Evolution Tracker -->
+    <section class="evolution-section">
+        <h2 class="evolution-title">🔥 Evolution Milestones</h2>
+        
+        <div class="milestone-bar">
+            <div class="milestone-progress" id="progressBar" style="width: 30%"></div>
+        </div>
+
+        <div class="milestones">
+            <div class="milestone achieved">
+                <div class="milestone-amount">$10K</div>
+                <div class="milestone-name">🔥 CharHatch</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-amount">$100K</div>
+                <div class="milestone-name">🔥 CharGrind</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-amount">$500K</div>
+                <div class="milestone-name">🔥 CharBlaze</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-amount">$1M</div>
+                <div class="milestone-name">🔥 MegaCharBurst</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-amount">$5M</div>
+                <div class="milestone-name">🔥 OmegaBeamZard</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lore Section -->
+    <section class="lore-section">
+        <h2 class="lore-title">The Legend of HyperBeam</h2>
+        <p class="lore-text">
+            In the depths of the EVM blockchain, where smart contracts burn with digital fire, 
+            a legendary power awakens. HyperBeam ($BEAM) is not just another token—it's the 
+            reincarnation of "The Last Flame," a mythical force that once scorched through 
+            traditional finance.
+        </p>
+        <p class="lore-text">
+            As our market cap grows, so does our dragon's power. Each milestone unlocks a new 
+            evolution, transforming from a humble hatchling into the ultimate OmegaBeamZard—
+            a cosmic entity of pure financial energy.
+        </p>
+        <p class="lore-text">
+            Join the flame. Feed the beast. Watch it evolve into something magnificent.
+        </p>
+    </section>
+
+    <!-- Evolution Animation Overlay -->
+    <div class="evolution-animation" id="evolutionOverlay">
+        <div class="evolution-text">EVOLUTION UNLOCKED!</div>
+        <div style="font-size: 1.5rem; margin-top: 1rem;">🔥 CharGrind Awakens! 🔥</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Telegram</a>
+            <a href="#" class="social-link">Discord</a>
+            <a href="#" class="social-link">DexTools</a>
+        </div>
+        <p>&copy; 2025 HyperBeam. Burn bright, evolve stronger.</p>
+    </footer>
+
+    <script>
+        // Create fire particles
+        function createFireParticles() {
+            const container = document.getElementById('fireParticles');
+            
+            setInterval(() => {
+                if (document.querySelectorAll('.particle').length < 50) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    container.appendChild(particle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 8000);
+                }
+            }, 200);
+        }
+
+        // Simulate market cap updates
+        function updateMarketCap() {
+            const marketCapElement = document.getElementById('marketCap');
+            const progressBar = document.getElementById('progressBar');
+            let currentValue = 15200;
+            
+            setInterval(() => {
+                // Simulate small market cap changes
+                const change = (Math.random() - 0.5) * 1000;
+                currentValue = Math.max(1000, currentValue + change);
+                
+                marketCapElement.textContent = `$${currentValue.toLocaleString()}`;
+                
+                // Update progress bar based on milestones
+                let progress = 0;
+                if (currentValue >= 10000) progress = 20;
+                if (currentValue >= 100000) progress = 40;
+                if (currentValue >= 500000) progress = 60;
+                if (currentValue >= 1000000) progress = 80;
+                if (currentValue >= 5000000) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                
+                // Check for evolution triggers
+                checkEvolution(currentValue);
+            }, 3000);
+        }
+
+        // Check for evolution milestones
+        function checkEvolution(marketCap) {
+            const milestones = document.querySelectorAll('.milestone');
+            
+            if (marketCap >= 10000 && !milestones[0].classList.contains('achieved')) {
+                triggerEvolution('🔥 CharHatch');
+                milestones[0].classList.add('achieved');
+            }
+            if (marketCap >= 100000 && !milestones[1].classList.contains('achieved')) {
+                triggerEvolution('🔥 CharGrind');
+                milestones[1].classList.add('achieved');
+                updateDragon('🐉');
+            }
+            if (marketCap >= 500000 && !milestones[2].classList.contains('achieved')) {
+                triggerEvolution('🔥 CharBlaze');
+                milestones[2].classList.add('achieved');
+                updateDragon('🔥');
+            }
+            if (marketCap >= 1000000 && !milestones[3].classList.contains('achieved')) {
+                triggerEvolution('🔥 MegaCharBurst');
+                milestones[3].classList.add('achieved');
+                updateDragon('⚡');
+            }
+            if (marketCap >= 5000000 && !milestones[4].classList.contains('achieved')) {
+                triggerEvolution('🔥 OmegaBeamZard');
+                milestones[4].classList.add('achieved');
+                updateDragon('💥');
+            }
+        }
+
+        // Trigger evolution animation
+        function triggerEvolution(evolutionName) {
+            const overlay = document.getElementById('evolutionOverlay');
+            overlay.style.display = 'flex';
+            overlay.querySelector('.evolution-text').nextElementSibling.textContent = evolutionName + ' Awakens!';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 3000);
+        }
+
+        // Update dragon appearance
+        function updateDragon(emoji) {
+            const dragon = document.getElementById('dragon');
+            dragon.textContent = emoji;
+            dragon.style.transform = 'scale(1.2)';
+            
+            setTimeout(() => {
+                dragon.style.transform = 'scale(1)';
+            }, 500);
+        }
+
+        // Buy button functionality
+        function buyBeam() {
+            // In a real implementation, this would link to Uniswap or DEX
+            alert('🔥 Redirecting to Uniswap to buy $BEAM! 🔥');
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createFireParticles();
+            updateMarketCap();
+        });
+
+        // Add some interactive effects
+        document.addEventListener('mousemove', function(e) {
+            const dragon = document.getElementById('dragon');
+            const rect = dragon.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+            const rotation = angle * (180 / Math.PI);
+            
+            dragon.style.transform = `rotate(${rotation * 0.1}deg)`;
+        });
+    </script>
+</body>
+</html>
