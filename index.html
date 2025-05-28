@@ -13,9 +13,8 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            /* Animated Gradient Background */
             background: linear-gradient(135deg, #FF4500, #E04000, #B22222, #8B0000);
-            background-size: 400% 400%; /* Needs to be larger than 100% for animation */
+            background-size: 400% 400%;
             animation: animatedBackground 25s ease infinite alternate;
             color: white;
             overflow-x: hidden;
@@ -39,10 +38,9 @@
 
         .particle {
             position: absolute;
-            /* Varying sizes for more depth */
-            width: calc(3px + (random() * 4px)); 
-            height: calc(3px + (random() * 4px));
-            background: rgba(255, 200, 0, 0.5); /* Softer, more ember-like */
+            width: calc(3px + (1px * (1 + Math.random() * 3))); /* Random size: 3px to 6px */
+            height: calc(3px + (1px * (1 + Math.random() * 3)));
+            background: rgba(255, 200, 0, 0.5); 
             border-radius: 50%;
             animation: float 12s infinite ease-in-out; 
             opacity: 0; 
@@ -52,9 +50,9 @@
 
         @keyframes float {
             0% { transform: translateY(100vh) scale(0.3) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.7; transform: scale(1) rotate(calc(random() * 180deg - 90deg)); } 
-            85% { opacity: 0.7; transform: scale(1) rotate(calc(random() * 180deg - 90deg));} 
-            100% { transform: translateY(-60px) scale(0.3) rotate(calc(random() * 360deg)); opacity: 0; } 
+            15% { opacity: 0.7; transform: scale(1) rotate(calc( (0.5 - Math.random()) * 180deg )); } 
+            85% { opacity: 0.7; transform: scale(1) rotate(calc( (0.5 - Math.random()) * 180deg ));} 
+            100% { transform: translateY(-60px) scale(0.3) rotate(calc( (0.5 - Math.random()) * 360deg )); opacity: 0; } 
         }
 
 
@@ -98,7 +96,6 @@
             background: linear-gradient(45deg, #FF8C00, #FF4500);
         }
 
-        /* Main Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -106,14 +103,14 @@
             justify-content: center; 
             align-items: center;
             text-align: center;
-            padding-top: 100px; /* Increased for header */
-            padding-bottom: 3rem; 
+            padding-top: 120px; /* Increased padding for taller header + space */
+            padding-bottom: 4rem; 
             position: relative;
             z-index: 1; 
         }
         
         .hero-main-title-text {
-            font-size: 5.5rem; 
+            font-size: 5.8rem; /* Slightly larger title */
             font-weight: 900; 
             color: white;
             text-transform: uppercase;
@@ -121,7 +118,7 @@
             text-shadow: 3px 3px 0px rgba(0,0,0,0.35), 
                          0 0 25px rgba(255,180,0,0.6),
                          0 0 40px rgba(255,120,0,0.4); 
-            margin-bottom: 0.2rem; 
+            margin-bottom: 0.25rem; 
             line-height: 1.05;
             animation: heroTitlePulse 3s ease-in-out infinite alternate;
         }
@@ -132,30 +129,30 @@
         }
         
         .hero-image-subtitle { 
-            font-size: 1.1rem; 
-            color: #FFDAB9; /* Peach Puff - a softer fiery accent */
-            margin-top: 0.3rem; 
-            margin-bottom: 2rem; 
+            font-size: 1.15rem; 
+            color: #FFDAB9; 
+            margin-top: 0.35rem; 
+            margin-bottom: 2.5rem; /* Space before Charizard */
             opacity: 0.9;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
             font-weight: 500; 
         }
 
         .charizard-image { 
-            max-width: 550px; /* Bigger Charizard */
-            width: 75%;      
+            max-width: 600px; /* Significantly Bigger Charizard */
+            width: 80%;      /* Responsive width */
             height: auto;
-            margin-top: 1rem; 
-            margin-bottom: -50px; /* Overlap with the bar below */
+            margin-top: 1.5rem; 
+            margin-bottom: -60px; /* Increased overlap with the bar below */
             animation: charizardHover 4s ease-in-out infinite alternate;
-            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
+            filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.5));
             z-index: 10; 
             position: relative;
         }
         
         @keyframes charizardHover { 
             0% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.03); } /* More hover effect */
+            50% { transform: translateY(-20px) scale(1.035); } /* More hover effect */
             100% { transform: translateY(0px) scale(1); }
         }
 
@@ -164,136 +161,141 @@
             display: flex;
             align-items: center;
             width: 90%; 
-            max-width: 750px; /* Max width for the bar */
-            background-color: #8B0000; /* Dark red, like embers/cooled lava */
-            padding: 1.3rem 2rem; 
-            border-radius: 15px; 
-            box-shadow: 0 6px 18px rgba(0,0,0,0.4), inset 0 2px 5px rgba(0,0,0,0.3); 
-            gap: 1.5rem;
-            margin-top: 0; /* Will be positioned by Charizard's margin */
+            max-width: 800px; /* Max width for the bar */
+            background-color: #6B1C00; /* Darker, richer ember red */
+            padding: 1.5rem 2.5rem; /* Taller and more padding */
+            border-radius: 18px; 
+            box-shadow: 0 8px 22px rgba(0,0,0,0.45), inset 0 3px 7px rgba(0,0,0,0.35); 
+            gap: 2rem; /* Increased gap */
+            margin-top: 0; 
             position: relative;
-            z-index: 5; /* Below Charizard if overlapping */
+            z-index: 5; 
         }
 
         .ir-current-value {
-            font-size: 2.1rem; 
+            font-size: 2.4rem; /* Larger current value */
             font-weight: bold;
             color: white;
-            text-shadow: 0px 0px 7px rgba(255,255,255,0.3), 1px 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 0px 0px 8px rgba(255,255,255,0.35), 1px 1px 4px rgba(0,0,0,0.7);
             white-space: nowrap;
-            margin-right: 1rem; 
+            margin-right: 1.5rem; 
         }
 
         .ir-progress-area { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
-        .ir-progress-track { width: 100%; height: 8px; background-color: #5A0000; border-radius: 5px; position: relative; margin-bottom: 0.6rem; }
-        .ir-progress-fill { height: 100%; background-color: #FF7700; border-radius: 5px; position: relative; }
-        .ir-progress-thumb { width: 17px; height: 17px; background-color: #FFD700; border: 2px solid white; border-radius: 50%; position: absolute; right: 0px; top: 50%; transform: translate(50%, -50%); box-shadow: 0 0 7px rgba(255,255,100,0.6); }
-        .ir-milestones { display: flex; justify-content: space-between; width: 100%; padding: 0 1px; }
-        .ir-milestones span { font-size: 0.8rem; color: #FFDAB9; opacity: 0.85; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
+        .ir-progress-track { width: 100%; height: 10px; background-color: #4A0F00; border-radius: 6px; position: relative; margin-bottom: 0.7rem; }
+        .ir-progress-fill { height: 100%; background-color: #FF8C00; border-radius: 6px; position: relative; }
+        .ir-progress-thumb { width: 20px; height: 20px; background-color: #FFD700; border: 2px solid white; border-radius: 50%; position: absolute; right: 0px; top: 50%; transform: translate(50%, -50%); box-shadow: 0 0 10px rgba(255,255,150,0.7); }
+        .ir-milestones { display: flex; justify-content: space-between; width: 100%; padding: 0 2px; }
+        .ir-milestones span { font-size: 0.85rem; color: #FFDAB9; opacity: 0.9; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         
-        /* Lore Section Styling (Re-integrated) */
         .lore-section {
-            padding: 4rem 2rem; 
-            max-width: 850px;
-            margin: 3rem auto; /* Good spacing after hero */
+            padding: 4.5rem 2.5rem; 
+            max-width: 900px;
+            margin: 4rem auto; 
             text-align: center;
-            background: rgba(0,0,0,0.4); 
-            border-radius: 20px;
-            box-shadow: 0 0 35px rgba(255,100,0,0.25), inset 0 0 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,165,0,0.2);
-            position: relative; /* For z-index if needed */
+            background: rgba(0,0,0,0.45); 
+            border-radius: 25px;
+            box-shadow: 0 0 40px rgba(255,100,0,0.3), inset 0 0 20px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,165,0,0.3);
+            position: relative; 
             z-index: 1;
         }
 
         .lore-title {
-            font-size: 3rem; 
-            margin-bottom: 2.5rem;
-            color: #FFC300; /* Bright Gold */
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.6), 0 0 20px rgba(255,180,0,0.5);
+            font-size: 3.2rem; 
+            margin-bottom: 2.8rem;
+            color: #FFC300; 
+            text-shadow: 2px 2px 7px rgba(0,0,0,0.65), 0 0 25px rgba(255,180,0,0.55);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.8px;
         }
 
         .lore-text {
-            font-size: 1.2rem; 
-            line-height: 1.8;
-            opacity: 1; /* Full opacity for readability */
-            margin-bottom: 1.8rem;
-            color: #f5f5f5; /* Brighter off-white */
+            font-size: 1.25rem; 
+            line-height: 1.85;
+            opacity: 1; 
+            margin-bottom: 2rem;
+            color: #f8f8f8; 
         }
         .lore-text strong { 
-            color: #FFB347; /* Light Orange for $BEAM */
+            color: #FFB347; 
             font-weight: bold;
         }
         .lore-emphasis {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-style: italic;
             color: #FFB347;
-            margin: 2rem 0;
+            margin: 2.2rem 0;
             display: block; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.35);
         }
         .lore-final-call {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            color: #FF7700; /* Bright Orange */
-            margin-top: 2.5rem;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            color: #FF7700; 
+            margin-top: 2.8rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.55);
         }
         .lore-final-call .emoji {
-            font-size: 2rem; 
+            font-size: 2.2rem; 
             vertical-align: middle;
-            margin: 0 0.3em;
+            margin: 0 0.35em;
         }
 
         /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .charizard-image { max-width: 500px; margin-bottom: -50px;}
+            .image-replication-bottom-bar { max-width: 700px; padding: 1.3rem 2rem; }
+            .ir-current-value { font-size: 2.2rem; }
+        }
+
         @media (max-width: 768px) {
-            .hero { padding-top: 80px; padding-bottom: 2rem; }
+            .hero { padding-top: 100px; padding-bottom: 3rem; }
             .hero-main-title-text { font-size: 4rem; }
-            .hero-image-subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
-            .charizard-image { max-width: 420px; margin-bottom: -40px; }
-            .image-replication-bottom-bar { flex-direction: column; gap: 1rem; padding: 1rem 1.5rem; max-width: 90%; }
-            .ir-current-value { font-size: 1.8rem; }
+            .hero-image-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+            .charizard-image { max-width: 400px; margin-bottom: -40px; }
+            .image-replication-bottom-bar { flex-direction: column; gap: 1.2rem; padding: 1.2rem 1.8rem; max-width: 90%; }
+            .ir-current-value { font-size: 2rem; margin-right:0; margin-bottom: 0.5rem; }
             .ir-progress-area { width: 100%; }
-            .lore-title { font-size: 2.5rem; }
-            .lore-text { font-size: 1.1rem; }
-            .lore-emphasis { font-size: 1.25rem; }
-            .lore-final-call { font-size: 1.3rem; }
+            .lore-title { font-size: 2.6rem; }
+            .lore-text { font-size: 1.15rem; }
+            .lore-emphasis { font-size: 1.3rem; }
+            .lore-final-call { font-size: 1.4rem; }
         }
 
         @media (max-width: 480px) {
-            body { background-size: 600% 600%; } /* Adjust for smaller screens if needed */
-            .hero { padding-top: 70px; padding-bottom: 1.5rem; }
+            .hero { padding-top: 80px; padding-bottom: 2rem; }
             .hero-main-title-text { font-size: 3rem; letter-spacing: 0.03em; }
-            .hero-image-subtitle { font-size: 0.9rem; margin-bottom: 1rem; }
-            .charizard-image { max-width: 320px; width: 85%; margin-bottom: -30px; }
-            .image-replication-bottom-bar { padding: 0.8rem 1rem; max-width: 95%; }
-            .ir-current-value { font-size: 1.6rem; margin-right: 0; margin-bottom: 0.3rem; }
-            .ir-milestones span { font-size: 0.7rem; }
+            .charizard-image { max-width: 300px; width: 90%; margin-bottom: -30px; }
+            .image-replication-bottom-bar { padding: 1rem 1.2rem; max-width: 95%; }
+            .ir-current-value { font-size: 1.8rem;}
+            .ir-progress-thumb { width: 18px; height: 18px; }
+            .ir-progress-track { height: 9px; }
+            .ir-milestones span { font-size: 0.75rem; }
             .lore-title { font-size: 2.2rem; }
-            .lore-text, .lore-emphasis, .lore-final-call { font-size: 1rem; }
-            .lore-final-call .emoji { font-size: 1.6rem; }
+            .lore-text, .lore-emphasis, .lore-final-call { font-size: 1.05rem; }
+            .lore-final-call .emoji { font-size: 1.7rem; }
         }
         
         .footer {
-            background: rgba(0,0,0,0.5);
-            padding: 2rem 1.5rem;
+            background: rgba(0,0,0,0.55);
+            padding: 2.2rem 1.8rem;
             text-align: center;
-            margin-top: 2rem; 
-            border-top: 1px solid rgba(255,165,0,0.2);
+            margin-top: 3rem; 
+            border-top: 1px solid rgba(255,165,0,0.25);
             position: relative;
             z-index: 1;
         }
-        .social-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .social-links { display: flex; justify-content: center; gap: 1.3rem; margin-bottom: 1.3rem; flex-wrap: wrap; }
         .social-link {
-            color: white; text-decoration: none; padding: 0.7rem 1.3rem;
-            background: rgba(255, 120, 0, 0.3);
-            border: 1px solid rgba(255, 120, 0, 0.6);
-            border-radius: 6px; transition: all 0.3s ease;
-            font-weight: 500; font-size: 0.9rem;
+            color: white; text-decoration: none; padding: 0.75rem 1.4rem;
+            background: rgba(255, 120, 0, 0.35);
+            border: 1px solid rgba(255, 120, 0, 0.65);
+            border-radius: 7px; transition: all 0.3s ease;
+            font-weight: 500; font-size: 0.95rem;
         }
-        .social-link:hover { background: rgba(255,100,0,0.6); transform: translateY(-2px) scale(1.03); box-shadow: 0 0 12px rgba(255,100,0,0.4); }
-        .footer p { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+        .social-link:hover { background: rgba(255,100,0,0.65); transform: translateY(-2px) scale(1.03); box-shadow: 0 0 15px rgba(255,100,0,0.45); }
+        .footer p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
         
         .evolution-animation {position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(200,50,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column;}
         .evolution-text {font-size: 3.5rem; font-weight: bold; animation: evolutionPulseGlow 1s ease-in-out infinite alternate; text-shadow: 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #f70; }
@@ -317,15 +319,16 @@
             <div class="ir-current-value">$500,000</div> 
             <div class="ir-progress-area">
                 <div class="ir-progress-track">
-                    <div class="ir-progress-fill" style="width: 50%;">  
+                    <!-- Initial fill for $500k on a $10M bar = 5% -->
+                    <div class="ir-progress-fill" style="width: 5%;">  
                         <div class="ir-progress-thumb"></div>
                     </div>
                 </div>
                 <div class="ir-milestones">
                     <span>$100K</span>
-                    <span>$500K</span>
-                    <span>$500K</span> 
-                    <span>1M</span>
+                    <span>$1M</span> 
+                    <span>$5M</span> 
+                    <span>$10M</span>
                 </div>
             </div>
         </div>
@@ -370,22 +373,34 @@
     </footer>
 
     <script>
+        // Particle size calculation using Math.random() needs to be done in JS
+        // if CSS random() is not fully supported or for more control.
+        // However, for simplicity, we'll rely on CSS random() if available,
+        // or accept that particles might be more uniform if it's not.
+        // The CSS 'calc(3px + (1px * (1 + Math.random() * 3)))' is an attempt
+        // to use CSS random, but browser support varies. A JS approach would be more robust
+        // for dynamic particle sizing during creation.
+
         function createFireParticles() {
             const container = document.getElementById('fireParticles');
             if (!container) return; 
-            const maxParticles = 50; // Increased particle density
-            const creationInterval = 150; // Faster creation
+            const maxParticles = 60; // Increased for more visual effect
+            const creationInterval = 120; // Faster creation
             setInterval(() => {
                 if (document.querySelectorAll('.particle').length < maxParticles) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
                     particle.style.left = Math.random() * 100 + '%';
-                    const duration = (Math.random() * 6 + 8); // 8-14s duration for longer float
+                    
+                    // Robust random size in JS
+                    const randomSize = Math.floor(3 + Math.random() * 4) + 'px'; // 3px to 6px
+                    particle.style.width = randomSize;
+                    particle.style.height = randomSize;
+
+                    const duration = (Math.random() * 6 + 8); 
                     particle.style.animationDelay = (Math.random() * duration * 0.3).toFixed(2) + 's'; 
                     particle.style.animationDuration = duration.toFixed(2) + 's'; 
-                    // Randomize initial horizontal drift for particles to spread out
-                    particle.style.setProperty('--random-drift', (Math.random() * 60 - 30) + 'px'); // Used in animation keyframes if needed
-
+                    
                     container.appendChild(particle);
                     setTimeout(() => { if (particle.parentNode) particle.parentNode.removeChild(particle); }, duration * 1000 + 500); 
                 }
@@ -398,7 +413,7 @@
             
             let currentValue;
             const adminSetValue = localStorage.getItem('adminMarketCap');
-            const defaultStartValue = 500000; 
+            const defaultStartValue = 500000; // Default set to $500,000
 
             if (adminSetValue !== null && !isNaN(parseFloat(adminSetValue))) {
                 currentValue = parseFloat(adminSetValue);
@@ -406,8 +421,8 @@
                 currentValue = defaultStartValue; 
             }
                     
-            const heroBarMaxValue = 1000000; 
-            const conceptualEvolutionMilestones = [10000, 100000, 500000, 1000000, 5000000]; 
+            const heroBarMaxValue = 10000000; // Max for the bar under Charizard is now 10M
+            const conceptualEvolutionMilestones = [10000, 100000, 500000, 1000000, 5000000, 10000000]; // Added 10M for overlay
             
             function updateDisplay(value) {
                 if (irMarketCapElement) {
@@ -432,14 +447,16 @@
                         latestValue = parseFloat(freshAdminValue);
                     }
                 } else {
+                     // Only simulate if default was the last known state or no admin value set
                     if (currentValue === defaultStartValue || localStorage.getItem('lastRunWasDefault') === 'true') {
-                        const change = (Math.random() - 0.45) * 15000; // Simulation change
+                        const change = (Math.random() - 0.45) * 20000; // Simulation change for larger range
                         latestValue = Math.max(10000, currentValue + change);
-                        localStorage.setItem('lastRunWasDefault', 'true'); // Mark that simulation is running
-                    } else {
-                         // If admin cleared, it may stick to last known admin val or reset
-                         // For simplicity, if cleared, it takes one page refresh or next interval might pick up default
-                         // if not explicitly handled to reset to defaultStartValue immediately here.
+                        latestValue = Math.min(latestValue, heroBarMaxValue * 1.1); // Cap simulation to avoid extreme values
+                        localStorage.setItem('lastRunWasDefault', 'true'); 
+                    } else if (localStorage.getItem('adminMarketCap') === null) {
+                        // If admin override was just cleared, revert to default and start simulation
+                        latestValue = defaultStartValue;
+                        localStorage.setItem('lastRunWasDefault', 'true');
                     }
                 }
                 
@@ -450,14 +467,14 @@
         }
 
         function checkConceptualEvolution(marketCap, evolutionMilestoneValues) {
-            const evolutionNames = ['CharHatch', 'CharGrind', 'CharBlaze', 'MegaCharBurst', 'OmegaBeamZard'];
+            const evolutionNames = ['CharHatch', 'CharGrind', 'CharBlaze', 'MegaCharBurst', 'OmegaBeamZard', 'ULTRA-OMEGA-ZARD']; // Added name for 10M
             if (typeof window.achievedMilestones === 'undefined') {
                 window.achievedMilestones = {};
             }
             
             evolutionMilestoneValues.forEach((value, index) => {
                 const milestoneKey = `milestone_${value}`;
-                if (marketCap >= value && !window.achievedMilestones[milestoneKey]) {
+                if (evolutionNames[index] && marketCap >= value && !window.achievedMilestones[milestoneKey]) {
                     triggerEvolution(evolutionNames[index]);
                     window.achievedMilestones[milestoneKey] = true; 
                 }
@@ -492,11 +509,17 @@
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
                     const cX = rect.left + rect.width/2, cY = rect.top + rect.height/2;
                     const dX = (e.clientX - cX)*0.015, dY = (e.clientY - cY)*0.015; 
-                    const rY = Math.max(-7,Math.min(7,dX)), rX = Math.max(-7,Math.min(7,-dY)); // Increased tilt range
-                    charizardImg.style.transform = `perspective(1200px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.03)`; 
+                    const rY = Math.max(-7,Math.min(7,dX)), rX = Math.max(-7,Math.min(7,-dY)); 
+                    charizardImg.style.transform = `perspective(1200px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.035)`; 
                 }
             });
-            document.addEventListener('mouseleave', () => { charizardImg.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)`; }); // Reset scale on leave
+            document.addEventListener('mouseleave', () => { 
+                // Smoothly return to base animation state (hovering) instead of static scale(1)
+                charizardImg.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)`; 
+                // Re-trigger animation slightly to ensure it continues if mouse leaves mid-animation
+                charizardImg.style.animation = 'none';
+                setTimeout(() => charizardImg.style.animation = '', 10); // Small delay to re-apply
+            });
         }
     </script>
 </body>
