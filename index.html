@@ -13,13 +13,12 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #FF4500, #FF6600, #FF8C00);
+            background: linear-gradient(135deg, #FF4500, #D63300, #A02800); 
             color: white;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animated background particles */
         .fire-particles {
             position: fixed;
             top: 0;
@@ -27,324 +26,277 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: -1; 
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
+            width: 5px; 
+            height: 5px;
+            background: rgba(255, 215, 0, 0.6); 
             border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-            opacity: 0.7;
+            animation: float 8s infinite ease-in-out; 
+            opacity: 0; 
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.5), 0 0 12px rgba(255, 100, 0, 0.3); 
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-10px) scale(1); opacity: 0; }
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.7; transform: scale(1); } 
+            90% { opacity: 0.7; transform: scale(1); } 
+            100% { transform: translateY(-50px) scale(0.5); opacity: 0; } 
         }
 
-        /* Header */
         .header {
             position: fixed;
             top: 0;
             width: 100%;
             padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(12px); 
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 100, 0, 0.3); 
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem; 
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 5px rgba(255, 100, 0, 0.7); 
         }
 
-        .buy-button { /* Header buy button */
-            background: linear-gradient(45deg, #FF4500, #FF6600);
+        .buy-button { 
+            background: linear-gradient(45deg, #FF6B00, #FF4500);
             color: white;
             padding: 0.8rem 2rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .buy-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.7);
         }
 
-        /* Main content */
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; 
+            justify-content: center; 
             align-items: center;
             text-align: center;
-            padding: 6rem 1rem 2rem; /* Adjusted side padding */
+            padding: 8rem 1rem 2rem; 
             position: relative;
         }
         
         .hero-main-title-text {
-            font-size: 5.5rem; 
+            font-size: 6rem; 
             font-weight: 900; 
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.05em; 
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2), 
-                         0 0 10px rgba(255,100,0,0.3); 
-            margin-bottom: 0.15rem; 
+            letter-spacing: 0.07em; 
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3), 
+                         0 0 20px rgba(255,150,0,0.5),
+                         0 0 35px rgba(255,100,0,0.3); 
+            margin-bottom: 0.2rem; 
             line-height: 1.0;
-            animation: glow 2s ease-in-out infinite alternate; 
+            animation: titleGlow 2.5s ease-in-out infinite alternate; 
         }
 
-        @keyframes glow {
+        @keyframes titleGlow {
             from { 
-                filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 15px rgba(255, 190, 0, 0.4)); 
+                filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 200, 0, 0.5)); 
             }
             to { 
-                filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 25px rgba(255, 200, 0, 0.7)); 
+                filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 35px rgba(255, 220, 50, 0.8)); 
             }
         }
         
         .hero-image-subtitle { 
-            font-size: 1.1rem; 
-            color: white;
-            margin-top: 0.2rem; 
-            margin-bottom: 1.5rem; /* Increased margin after removing button */
-            opacity: 0.95;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-            font-weight: 500; 
+            font-size: 1.2rem; 
+            color: #FFD700; 
+            margin-top: 0.3rem; 
+            margin-bottom: 2rem; 
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            font-weight: 600; 
         }
 
         .charizard-image { 
-            max-width: 480px; /* Made Charizard bigger */
-            width: 75%;      /* Made Charizard bigger */
+            max-width: 500px; 
+            width: 70%;      
             height: auto;
-            margin-top: 0.5rem; 
-            margin-bottom: -40px; /* Negative margin to pull the bar up under its feet */
+            margin-top: 1rem; 
+            margin-bottom: -45px; 
             animation: dragonPulse 3s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.4));
             z-index: 10; 
             position: relative;
         }
         
         @keyframes dragonPulse { 
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.04); } 
         }
 
-        /* Bottom bar with marketcap and milestones */
         .image-replication-bottom-bar {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center content if bar is wider */
+            justify-content: center; 
             width: 90%;
-            max-width: 650px; /* Slightly wider bar */
-            margin-top: 0; /* Adjusted to be pulled up by Charizard's negative margin */
-            padding: 1rem 1.5rem; /* Added padding inside the bar */
-            gap: 1.5rem; /* Increased gap */
+            max-width: 700px; 
+            margin-top: 0; 
+            padding: 1.2rem 1.8rem; 
+            gap: 1.8rem; 
             position: relative; 
-            z-index: 5; /* Below Charizard */
-            background-color: #BF4C0A; /* Darker orange background */
-            border-radius: 12px; /* Rounded corners for the bar */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* Shadow for depth */
+            z-index: 5; 
+            background-color: #A02800; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35), inset 0 0 10px rgba(0,0,0,0.2); 
+            border-top: 1px solid rgba(255,100,0,0.4); 
         }
 
         .ir-current-value {
-            font-size: 2rem; 
+            font-size: 2.3rem; 
             font-weight: bold;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0px 0px 8px rgba(0,0,0,0.6), 0px 0px 15px rgba(255,255,255,0.2);
             white-space: nowrap;
         }
 
-        .ir-progress-area {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch; 
-        }
-
-        .ir-progress-track {
-            width: 100%;
-            height: 7px; 
-            background-color: #A54714; /* Kept original track color, contrasts with new bar bg */
-            border-radius: 4px;
-            position: relative;
-            margin-bottom: 0.6rem; 
-        }
-
-        .ir-progress-fill {
-            height: 100%;
-            background-color: #F3952A; 
-            border-radius: 4px;
-            position: relative; 
-        }
-
-        .ir-progress-thumb {
-            width: 14px;
-            height: 14px;
-            background-color: #F3952A; 
-            border: 2px solid white;
-            border-radius: 50%;
-            position: absolute;
-            right: -1px; 
-            top: 50%;
-            transform: translate(50%, -50%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-        }
-
-        .ir-milestones {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 2px; 
-        }
-
-        .ir-milestones span {
-            font-size: 0.85rem;
-            color: white;
-            opacity: 0.9;
-            font-weight: 500;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-        }
+        .ir-progress-area { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
+        .ir-progress-track { width: 100%; height: 9px; background-color: #6B1C00; border-radius: 6px; position: relative; margin-bottom: 0.7rem; }
+        .ir-progress-fill { height: 100%; background-color: #FF8C00; border-radius: 6px; position: relative; }
+        .ir-progress-thumb { width: 18px; height: 18px; background-color: #FFC300; border: 2px solid white; border-radius: 50%; position: absolute; right: 0px; top: 50%; transform: translate(50%, -50%); box-shadow: 0 0 8px rgba(255,255,255,0.5); }
+        .ir-milestones { display: flex; justify-content: space-between; width: 100%; padding: 0 2px; }
+        .ir-milestones span { font-size: 0.85rem; color: #FFD700; opacity: 0.9; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         
-        /* Responsive Adjustments for Hero Section */
+        .lore-section {
+            padding: 3rem 2rem; 
+            max-width: 800px;
+            margin: 1rem auto 3rem auto; 
+            text-align: center;
+            background: rgba(0,0,0,0.25); 
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255,100,0,0.2);
+        }
+
+        .lore-title {
+            font-size: 2.8rem; 
+            margin-bottom: 2rem;
+            color: #FFD700; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5), 0 0 15px rgba(255,165,0,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lore-text {
+            font-size: 1.15rem; 
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0; 
+        }
+        .lore-text strong { 
+            color: #FFC300;
+            font-weight: bold;
+        }
+        .lore-emphasis {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #FFC300;
+            margin: 1.5rem 0;
+            display: block; 
+        }
+        .lore-final-call {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #FF8C00;
+            margin-top: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        .lore-final-call .emoji {
+            font-size: 1.8rem; 
+            vertical-align: middle;
+        }
+
         @media (max-width: 768px) {
-            .hero-main-title-text {
-                font-size: 4rem; 
-                margin-bottom: 0.1rem;
-            }
-            .hero-image-subtitle {
-                font-size: 1rem;
-                margin-bottom: 1rem; /* Space before larger Charizard */
-            }
-            .charizard-image {
-                max-width: 380px; /* Adjust Charizard size for tablets */
-                width: 70%;
-                margin-bottom: -30px; /* Adjust overlap */
-            }
-            .image-replication-bottom-bar {
-                flex-direction: column; 
-                gap: 0.8rem; /* Reduced gap for column layout */
-                padding: 0.8rem 1rem;
-                max-width: 90%;
-            }
-            .ir-current-value {
-                font-size: 1.6rem;
-            }
-            .ir-progress-area {
-                width: 100%;
-            }
-            .ir-milestones span {
-                font-size: 0.75rem;
-            }
+            .hero { padding: 7rem 1rem 2rem; }
+            .hero-main-title-text { font-size: 4.5rem; }
+            .hero-image-subtitle { font-size: 1.1rem; margin-bottom: 1.5rem; }
+            .charizard-image { max-width: 400px; width: 75%; margin-bottom: -35px; }
+            .image-replication-bottom-bar { flex-direction: column; gap: 1rem; padding: 1rem 1.2rem; max-width: 90%; }
+            .ir-current-value { font-size: 2rem; }
+            .ir-progress-area { width: 100%; }
+            .lore-title { font-size: 2.4rem; }
+            .lore-text { font-size: 1.1rem; }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding: 5rem 0.5rem 1.5rem; /* Adjust padding */
-            }
-             .hero-main-title-text {
-                font-size: 2.8rem; /* Further adjust title size */
-                letter-spacing: 0.02em;
-            }
-            .hero-image-subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 0.5rem; /* Space before Charizard */
-            }
-            .charizard-image {
-                max-width: 280px; /* Adjust Charizard size for mobile */
-                width: 80%;
-                margin-bottom: -20px; /* Adjust overlap for smaller Charizard */
-            }
-            .image-replication-bottom-bar {
-                max-width: 95%;
-                padding: 0.6rem 0.8rem;
-            }
-            .ir-current-value {
-                font-size: 1.4rem;
-                margin-bottom: 0.1rem; /* Space if in column */
-            }
-            .ir-milestones span {
-                font-size: 0.65rem;
-            }
-            .ir-progress-track {
-                height: 6px;
-                margin-bottom: 0.4rem;
-            }
-            .ir-progress-thumb {
-                width: 12px;
-                height: 12px;
-            }
+            .hero { padding: 6rem 0.5rem 1.5rem; }
+            .hero-main-title-text { font-size: 3.2rem; letter-spacing: 0.02em; }
+            .hero-image-subtitle { font-size: 1rem; margin-bottom: 1rem; }
+            .charizard-image { max-width: 300px; width: 85%; margin-bottom: -25px; }
+            .image-replication-bottom-bar { max-width: 95%; padding: 0.8rem 1rem; }
+            .ir-current-value { font-size: 1.7rem; margin-bottom: 0.2rem; }
+            .ir-milestones span { font-size: 0.75rem; }
+            .lore-title { font-size: 2rem; }
+            .lore-text, .lore-emphasis, .lore-final-call { font-size: 1rem; }
+            .lore-final-call .emoji { font-size: 1.5rem; }
         }
 
-
-        /* Dragon Container & Market Cap (original, commented out in Hero) */
-        .dragon-container, .market-cap { display: none; } /* Hiding these for now */
-
-        /* --- Remaining CSS (Evolution Tracker, Lore, Footer, etc. - Unchanged) --- */
-        .evolution-section { padding: 4rem 2rem; background: rgba(0, 0, 0, 0.2); }
-        .evolution-title {text-align: center; font-size: 2.5rem; margin-bottom: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);}
-        .milestone-bar {position: relative; background: rgba(0,0,0,0.3); height: 20px; border-radius: 10px; margin: 2rem 0; overflow: hidden;}
-        .milestone-progress {height: 100%; background: linear-gradient(90deg, #FFD700, #FF6600); border-radius: 10px; transition: width 1s ease; position: relative;}
-        .milestone-progress::after {content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: progressShine 2s linear infinite;}
-        @keyframes progressShine { 0% {transform: translateX(-100%);} 100% {transform: translateX(100%);} }
-        .milestones {display: flex; justify-content: space-between; margin-top: 1rem; flex-wrap: wrap; gap: 1rem;}
-        .milestone {text-align: center; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 10px; border: 2px solid rgba(255,69,0,0.3); flex: 1; min-width: 150px; transition: all 0.3s ease;}
-        .milestone.achieved {border-color: #FFD700; background: rgba(255,215,0,0.1); transform: scale(1.05);}
-        .milestone-amount {font-size: 1.2rem; font-weight: bold; color: #FFD700;}
-        .milestone-name {font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;}
-        .lore-section { padding: 4rem 2rem; max-width: 800px; margin: 0 auto; text-align: center; }
-        .lore-title { font-size: 2.5rem; margin-bottom: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .lore-text { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; }
-        .footer { background: rgba(0,0,0,0.5); padding: 2rem; text-align: center; }
-        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-        .social-link { color: white; text-decoration: none; padding: 0.8rem 1.5rem; background: rgba(255,69,0,0.2); border-radius: 10px; transition: all 0.3s ease; }
-        .social-link:hover { background: rgba(255,69,0,0.4); transform: translateY(-2px); }
-        .evolution-animation {position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(255,69,0,0.9); z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column;}
-        .evolution-text {font-size: 3rem; font-weight: bold; animation: evolutionGlow 1s ease-in-out infinite alternate;}
-        /* @keyframes evolutionGlow defined earlier for hero title, re-using would be fine or define separately if different */
+        .dragon-container, .market-cap { display: none; } 
+        
+        .footer {
+            background: rgba(0,0,0,0.6);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,100,0,0.4);
+            margin-top: 3rem; 
+        }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .social-link {
+            color: white; text-decoration: none; padding: 0.8rem 1.5rem;
+            background: rgba(255, 100, 0, 0.25);
+            border: 1px solid rgba(255, 100, 0, 0.5);
+            border-radius: 8px; transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .social-link:hover { background: rgba(255,100,0,0.5); transform: translateY(-3px) scale(1.05); box-shadow: 0 0 15px rgba(255,100,0,0.3); }
+        .footer p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+        
+        .evolution-animation {position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(200,50,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column;}
+        .evolution-text {font-size: 3.5rem; font-weight: bold; animation: evolutionGlow 1s ease-in-out infinite alternate; text-shadow: 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #f70; }
+        @keyframes evolutionGlow { from { opacity: 0.8; transform: scale(1); } to { opacity: 1; transform: scale(1.05); } }
 
     </style>
 </head>
 <body>
-    <!-- Fire Particles Background -->
     <div class="fire-particles" id="fireParticles"></div>
-
-    <!-- Header -->
     <header class="header">
         <div class="logo">🔥 HYPERBEAM</div>
         <a href="#" class="buy-button" onclick="buyBeam()">BUY $BEAM</a>
     </header>
 
-    <!-- Hero Section - Modified -->
     <section class="hero">
         <h1 class="hero-main-title-text">HYPERBEAM</h1>
         <p class="hero-image-subtitle">Only on HyperEVM</p>
-        
-        <!-- Charizard Image (No button before it now) -->
         <img src="images/assets_task_01jwasnjs1f1ya51be2d5czmq1_1748414206_img_0.webp" alt="Charizard" class="charizard-image">
         
-        <!-- Bottom Progress Bar Section with new background and position -->
         <div class="image-replication-bottom-bar">
-            <div class="ir-current-value">$15,200</div>
+            <div class="ir-current-value">$16,013</div>
             <div class="ir-progress-area">
                 <div class="ir-progress-track">
-                    <div class="ir-progress-fill" style="width: 15.2%;"> 
+                    <div class="ir-progress-fill" style="width: 1.6013%;">  
                         <div class="ir-progress-thumb"></div>
                     </div>
                 </div>
@@ -358,62 +310,34 @@
         </div>
     </section>
 
-    <!-- Evolution Tracker (Unchanged) -->
-    <section class="evolution-section">
-        <h2 class="evolution-title">🔥 Evolution Milestones</h2>
-        <div class="milestone-bar">
-            <div class="milestone-progress" id="progressBar" style="width: 15.2%"></div>
-        </div>
-        <div class="milestones">
-            <div class="milestone achieved">
-                <div class="milestone-amount">$10K</div>
-                <div class="milestone-name">🔥 CharHatch</div>
-            </div>
-            <div class="milestone">
-                <div class="milestone-amount">$100K</div>
-                <div class="milestone-name">🔥 CharGrind</div>
-            </div>
-            <div class="milestone">
-                <div class="milestone-amount">$500K</div>
-                <div class="milestone-name">🔥 CharBlaze</div>
-            </div>
-            <div class="milestone">
-                <div class="milestone-amount">$1M</div>
-                <div class="milestone-name">🔥 MegaCharBurst</div>
-            </div>
-            <div class="milestone">
-                <div class="milestone-amount">$5M</div>
-                <div class="milestone-name">🔥 OmegaBeamZard</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lore Section (Unchanged) -->
     <section class="lore-section">
         <h2 class="lore-title">The Legend of HyperBeam</h2>
         <p class="lore-text">
-            In the depths of the EVM blockchain, where smart contracts burn with digital fire, 
-            a legendary power awakens. HyperBeam ($BEAM) is not just another token—it's the 
-            reincarnation of "The Last Flame," a mythical force that once scorched through 
-            traditional finance.
+            In the molten core of the EVM blockchain—where smart contracts ignite and liquidity flows like lava—a forgotten force stirs once more.
         </p>
         <p class="lore-text">
-            As our market cap grows, so does our dragon's power. Each milestone unlocks a new 
-            evolution, transforming from a humble hatchling into the ultimate OmegaBeamZard—
-            a cosmic entity of pure financial energy.
+            HyperBeam (<strong>$BEAM</strong>) is no ordinary meme coin. It is the blazing rebirth of The Last Flame, a legendary spark that once set the old financial world ablaze. Banished by centralized powers, it lay dormant… until now.
         </p>
         <p class="lore-text">
-            Join the flame. Feed the beast. Watch it evolve into something magnificent.
+            Forged in digital fire and fueled by pure hopium, this dragon of destruction rises again. With every surge in market cap, our beast evolves, growing stronger, more fearsome, more financially unhinged.
+        </p>
+        <p class="lore-text">
+            From the crackling shell of CharHatch, through the smoldering might of CharGrind, to the unstoppable fury of OmegaBeamZard—each form marks a new chapter in the prophecy of flame.
+        </p>
+        <p class="lore-emphasis">This isn't just a token.</p>
+        <p class="lore-emphasis">A cult.</p>
+        <p class="lore-emphasis">A crusade.</p>
+        <p class="lore-emphasis">A hyper-financial ascension.</p>
+        <p class="lore-final-call">
+            <span class="emoji">🔥</span> Join the flame. Feed the beast. Witness the final evolution. <span class="emoji">🔥</span>
         </p>
     </section>
 
-    <!-- Evolution Animation Overlay (Unchanged) -->
     <div class="evolution-animation" id="evolutionOverlay">
         <div class="evolution-text">EVOLUTION UNLOCKED!</div>
-        <div style="font-size: 1.5rem; margin-top: 1rem;">🔥 CharGrind Awakens! 🔥</div>
+        <div style="font-size: 1.8rem; margin-top: 1rem; color: #FFD700; text-shadow: 1px 1px 2px #000;">A New Form Awakens!</div>
     </div>
 
-    <!-- Footer (Unchanged) -->
     <footer class="footer">
         <div class="social-links">
             <a href="#" class="social-link">Twitter</a>
@@ -425,90 +349,98 @@
     </footer>
 
     <script>
-        // --- JavaScript (Unchanged from previous version) ---
         function createFireParticles() {
             const container = document.getElementById('fireParticles');
             if (!container) return; 
-            
-            const maxParticles = 30; 
-            const creationInterval = 250; 
-
-            const particleInterval = setInterval(() => {
+            const maxParticles = 40; 
+            const creationInterval = 200; 
+            setInterval(() => {
                 if (document.querySelectorAll('.particle').length < maxParticles) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
                     particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = (Math.random() * 3).toFixed(2) + 's'; 
-                    particle.style.animationDuration = (Math.random() * 3 + 3).toFixed(2) + 's'; 
+                    const duration = (Math.random() * 4 + 6); 
+                    particle.style.animationDelay = (Math.random() * duration * 0.5).toFixed(2) + 's'; 
+                    particle.style.animationDuration = duration.toFixed(2) + 's'; 
                     container.appendChild(particle);
-                    
-                    setTimeout(() => {
-                        if (particle.parentNode) {
-                            particle.parentNode.removeChild(particle);
-                        }
-                    }, parseFloat(particle.style.animationDuration) * 1000 + 500); 
+                    setTimeout(() => { if (particle.parentNode) particle.parentNode.removeChild(particle); }, duration * 1000 + 500); 
                 }
             }, creationInterval);
         }
 
         function updateMarketCap() {
             const irMarketCapElement = document.querySelector('.ir-current-value'); 
-            const progressBar = document.getElementById('progressBar'); 
             const irProgressBarFill = document.querySelector('.ir-progress-fill'); 
             
-            let currentValue = 15200; 
-            const milestonesValues = [10000, 100000, 500000, 1000000, 5000000];
-            
-            if (irProgressBarFill) {
-                 const initialProgressToFirstMajorMilestone = (currentValue / milestonesValues[1]) * 100; 
-                 irProgressBarFill.style.width = Math.min(initialProgressToFirstMajorMilestone, 100) + '%';
-            }
+            let currentValue;
+            const adminSetValue = localStorage.getItem('adminMarketCap');
 
+            if (adminSetValue !== null && !isNaN(parseFloat(adminSetValue))) {
+                currentValue = parseFloat(adminSetValue);
+                // console.log("Using admin-set market cap:", currentValue);
+            } else {
+                currentValue = 16013; // Default starting value
+                // console.log("Using default market cap:", currentValue);
+            }
+                    
+            const heroBarMaxValue = 1000000; 
+            const conceptualEvolutionMilestones = [10000, 100000, 500000, 1000000, 5000000]; 
+            
+            // Initial display update
+            if (irMarketCapElement) {
+                irMarketCapElement.textContent = `$${Math.floor(currentValue).toLocaleString()}`;
+            }
+            if (irProgressBarFill) {
+                 const initialHeroFill = (currentValue / heroBarMaxValue) * 100;
+                 irProgressBarFill.style.width = Math.min(initialHeroFill, 100) + '%';
+            }
+            checkConceptualEvolution(currentValue, conceptualEvolutionMilestones); // Initial check
+
+            // Interval for updates
             setInterval(() => {
-                const change = (Math.random() - 0.45) * 2000; 
-                currentValue = Math.max(10000, currentValue + change); 
+                const adminOverrideActive = localStorage.getItem('adminMarketCap') !== null;
                 
+                if (!adminOverrideActive) { 
+                    const change = (Math.random() - 0.45) * 1000; 
+                    currentValue = Math.max(10000, currentValue + change); 
+                } else {
+                    const freshAdminValue = localStorage.getItem('adminMarketCap');
+                    if (freshAdminValue !== null && !isNaN(parseFloat(freshAdminValue))) {
+                         currentValue = parseFloat(freshAdminValue);
+                    }
+                }
+
                 const formattedValue = `$${Math.floor(currentValue).toLocaleString()}`;
 
                 if (irMarketCapElement) { 
                     irMarketCapElement.textContent = formattedValue;
                 }
                 
-                let progress = 0;
-                if (currentValue >= milestonesValues[0]) progress = (currentValue / milestonesValues[1]) * 20; 
-                if (currentValue >= milestonesValues[1]) progress = 20 + ( (currentValue - milestonesValues[1]) / (milestonesValues[2] - milestonesValues[1]) ) * 20;
-                if (currentValue >= milestonesValues[2]) progress = 40 + ( (currentValue - milestonesValues[2]) / (milestonesValues[3] - milestonesValues[2]) ) * 20;
-                if (currentValue >= milestonesValues[3]) progress = 60 + ( (currentValue - milestonesValues[3]) / (milestonesValues[4] - milestonesValues[3]) ) * 20;
-                if (currentValue >= milestonesValues[4]) progress = 100;
-                
-                progress = Math.min(Math.max(0, progress), 100); 
-
-                if (progressBar) {
-                    progressBar.style.width = progress + '%';
-                }
-
                 if (irProgressBarFill) {
-                    let heroFillPercent = (currentValue / milestonesValues[1]) * 100; 
+                    let heroFillPercent = (currentValue / heroBarMaxValue) * 100; 
                     irProgressBarFill.style.width = Math.min(heroFillPercent, 100) + '%';
                 }
                 
-                checkEvolution(currentValue);
+                checkConceptualEvolution(currentValue, conceptualEvolutionMilestones);
             }, 3000);
         }
 
-        function checkEvolution(marketCap) {
-            const milestonesElements = document.querySelectorAll('.evolution-section .milestone');
-            const milestoneValues = [10000, 100000, 500000, 1000000, 5000000];
-            const evolutionNames = ['🔥 CharHatch', '🔥 CharGrind', '🔥 CharBlaze', '🔥 MegaCharBurst', '🔥 OmegaBeamZard'];
-            // const dragonEmojis = ['🥚','🐲', '🐉', '🔥', '💥']; // Original dragon emojis for reference if you reinstate that feature
-
-            milestoneValues.forEach((value, index) => {
-                if (milestonesElements[index] && marketCap >= value && !milestonesElements[index].classList.contains('achieved')) {
+        function checkConceptualEvolution(marketCap, evolutionMilestoneValues) {
+            const evolutionNames = ['CharHatch', 'CharGrind', 'CharBlaze', 'MegaCharBurst', 'OmegaBeamZard'];
+            if (typeof window.achievedMilestones === 'undefined') {
+                window.achievedMilestones = {};
+            }
+            
+            evolutionMilestoneValues.forEach((value, index) => {
+                const milestoneKey = `milestone_${value}`;
+                if (marketCap >= value && !window.achievedMilestones[milestoneKey]) {
                     triggerEvolution(evolutionNames[index]);
-                    milestonesElements[index].classList.add('achieved');
-                    // If you had a visual dragon to update, it would go here
-                    // if (dragonEmojis[index]) { updateDragon(dragonEmojis[index]); }
+                    window.achievedMilestones[milestoneKey] = true; 
                 }
+                // If you want milestones to "unachieve" if market cap drops below them:
+                // else if (marketCap < value && window.achievedMilestones[milestoneKey]) {
+                //     delete window.achievedMilestones[milestoneKey];
+                // }
             });
         }
 
@@ -516,26 +448,22 @@
             const overlay = document.getElementById('evolutionOverlay');
             if (!overlay) return;
             overlay.style.display = 'flex';
-            const evolutionTextElement = overlay.querySelector('.evolution-text');
-            if (evolutionTextElement && evolutionTextElement.nextElementSibling) {
-                evolutionTextElement.nextElementSibling.textContent = evolutionName + ' Awakens!';
+            const evoTextElement = overlay.querySelector('.evolution-text'); 
+            const subTextElement = evoTextElement.nextElementSibling; 
+            
+            if (subTextElement) { 
+                subTextElement.innerHTML = `🔥 ${evolutionName} Awakens! 🔥`;
             }
             
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 3000);
+            setTimeout(() => { overlay.style.display = 'none'; }, 3500); 
         }
 
-        // updateDragon function can be removed if .dragon-container is not used
-        // function updateDragon(emoji) { ... } 
-
-        function buyBeam() {
-            alert('🔥 Redirecting to buy $BEAM! 🔥'); // Changed from SBEAM since hero button was removed
-        }
+        function buyBeam() { alert('🔥 Redirecting to buy $BEAM! 🔥'); }
 
         document.addEventListener('DOMContentLoaded', function() {
             createFireParticles();
             updateMarketCap(); 
+            // The initial checkConceptualEvolution is now called within updateMarketCap after currentValue is set
         });
 
         const charizardImg = document.querySelector('.charizard-image');
@@ -543,18 +471,13 @@
             document.addEventListener('mousemove', function(e) {
                 const rect = charizardImg.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    const deltaX = (e.clientX - centerX) * 0.01; 
-                    const deltaY = (e.clientY - centerY) * 0.01;
-                    const rotateY = Math.max(-5, Math.min(5, deltaX)); 
-                    const rotateX = Math.max(-5, Math.min(5, -deltaY)); 
-                    charizardImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`; 
+                    const cX = rect.left + rect.width/2, cY = rect.top + rect.height/2;
+                    const dX = (e.clientX - cX)*0.01, dY = (e.clientY - cY)*0.01;
+                    const rY = Math.max(-5,Math.min(5,dX)), rX = Math.max(-5,Math.min(5,-dY));
+                    charizardImg.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.04)`; 
                 }
             });
-            document.addEventListener('mouseleave', () => {
-                 charizardImg.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.03)`;
-            });
+            document.addEventListener('mouseleave', () => { charizardImg.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.04)`; });
         }
     </script>
 </body>
