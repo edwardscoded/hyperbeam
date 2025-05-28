@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Set Market Cap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #FF4500;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #FF4500;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #D63300;
+        }
+        #currentValueDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+        }
+        .link-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #FF4500;
+            text-decoration: none;
+        }
+        .link-back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin: Set Market Cap</h1>
+        
+        <label for="marketCapInput">Enter New Market Cap:</label>
+        <input type="number" id="marketCapInput" placeholder="e.g., 250000">
+        
+        <button id="setMarketCapButton">Set Market Cap</button>
+
+        <div id="currentValueDisplay">
+            Current value on main site will be: <strong id="displayAdminValue">-</strong>
+        </div>
+         <button id="clearMarketCapButton" style="background-color: #777; margin-top: 10px;">Clear Override & Use Default</button>
+
+        <a href="index.html" target="_blank" class="link-back">View Main Website</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const marketCapInput = document.getElementById('marketCapInput');
+            const setMarketCapButton = document.getElementById('setMarketCapButton');
+            const clearMarketCapButton = document.getElementById('clearMarketCapButton');
+            const displayAdminValue = document.getElementById('displayAdminValue');
+
+            // Load and display current admin-set value
+            function loadAdminValue() {
+                const adminValue = localStorage.getItem('adminMarketCap');
+                if (adminValue !== null) {
+                    marketCapInput.value = adminValue;
+                    displayAdminValue.textContent = `$${parseFloat(adminValue).toLocaleString()}`;
+                } else {
+                    displayAdminValue.textContent = 'Default (from script)';
+                }
+            }
+            loadAdminValue();
+
+            setMarketCapButton.addEventListener('click', () => {
+                const newValue = marketCapInput.value;
+                if (newValue && !isNaN(newValue)) {
+                    localStorage.setItem('adminMarketCap', parseFloat(newValue));
+                    alert('Market Cap updated! Refresh the main website to see changes.');
+                    loadAdminValue();
+                } else {
+                    alert('Please enter a valid number.');
+                }
+            });
+
+            clearMarketCapButton.addEventListener('click', () => {
+                localStorage.removeItem('adminMarketCap');
+                marketCapInput.value = ''; // Clear the input field
+                alert('Admin override cleared. Main site will use default simulation.');
+                loadAdminValue();
+            });
+        });
+    </script>
+</body>
+</html>
