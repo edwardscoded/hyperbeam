@@ -13,11 +13,18 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            /* Updated background to match new image - a more solid orange */
-            background-color: #F05E1C; 
+            /* Animated Gradient Background */
+            background: linear-gradient(135deg, #FF4500, #E04000, #B22222, #8B0000);
+            background-size: 400% 400%; /* Needs to be larger than 100% for animation */
+            animation: animatedBackground 25s ease infinite alternate;
             color: white;
             overflow-x: hidden;
             position: relative;
+        }
+
+        @keyframes animatedBackground {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         .fire-particles {
@@ -27,207 +34,270 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0; /* Behind hero content but above body background */
+            z-index: 0; 
         }
 
         .particle {
             position: absolute;
-            width: 4px; 
-            height: 4px;
-            background: rgba(255, 215, 0, 0.5); 
+            /* Varying sizes for more depth */
+            width: calc(3px + (random() * 4px)); 
+            height: calc(3px + (random() * 4px));
+            background: rgba(255, 200, 0, 0.5); /* Softer, more ember-like */
             border-radius: 50%;
-            animation: float 10s infinite ease-in-out; 
+            animation: float 12s infinite ease-in-out; 
             opacity: 0; 
-            box-shadow: 0 0 6px rgba(255, 165, 0, 0.4), 0 0 10px rgba(255, 100, 0, 0.2); 
+            box-shadow: 0 0 7px rgba(255, 180, 0, 0.6), 0 0 10px rgba(255, 120, 0, 0.4); 
+            transform-origin: center;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) scale(0.4); opacity: 0; }
-            10% { opacity: 0.6; transform: scale(0.8); } 
-            90% { opacity: 0.6; transform: scale(0.8); } 
-            100% { transform: translateY(-40px) scale(0.4); opacity: 0; } 
+            0% { transform: translateY(100vh) scale(0.3) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.7; transform: scale(1) rotate(calc(random() * 180deg - 90deg)); } 
+            85% { opacity: 0.7; transform: scale(1) rotate(calc(random() * 180deg - 90deg));} 
+            100% { transform: translateY(-60px) scale(0.3) rotate(calc(random() * 360deg)); opacity: 0; } 
         }
+
 
         .header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 0.8rem 1.5rem; /* Slightly smaller padding */
-            background: rgba(0, 0, 0, 0.2); 
-            backdrop-filter: blur(8px); 
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.35); 
+            backdrop-filter: blur(10px); 
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */ /* Removed border */
+            border-bottom: 1px solid rgba(255,165,0,0.2);
         }
 
         .logo {
-            font-size: 1.4rem; 
+            font-size: 1.5rem; 
             font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0,0,0, 0.5); 
+            text-shadow: 2px 2px 4px rgba(255,100,0, 0.6); 
         }
 
         .buy-button { 
-            background: linear-gradient(45deg, #FF8C00, #FF4500);
+            background: linear-gradient(45deg, #FF7700, #E65C00);
             color: white;
-            padding: 0.6rem 1.5rem; /* Smaller button */
+            padding: 0.7rem 1.8rem;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 3px 10px rgba(0,0,0, 0.3);
-            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0, 0.4);
+            text-transform: uppercase;
         }
 
         .buy-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0, 0.4);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0, 0.5);
+            background: linear-gradient(45deg, #FF8C00, #FF4500);
         }
 
         /* Main Hero Section */
         .hero {
-            min-height: 100vh; /* Ensure it fills the viewport height */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Align content to the center */
+            justify-content: center; 
             align-items: center;
             text-align: center;
-            padding-top: 80px; /* Space for fixed header, adjust as needed */
-            padding-bottom: 20px; /* Space at the bottom */
+            padding-top: 100px; /* Increased for header */
+            padding-bottom: 3rem; 
             position: relative;
-            z-index: 1; /* Above particles */
+            z-index: 1; 
         }
         
         .hero-main-title-text {
-            font-size: 4.5rem; /* Adjusted to match reference image proportions */
+            font-size: 5.5rem; 
             font-weight: 900; 
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.05em; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* More subtle shadow */
-            margin-bottom: 0.1rem; 
-            line-height: 1.1;
-            /* Removed glow animation as it's not prominent in new image */
+            letter-spacing: 0.06em; 
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.35), 
+                         0 0 25px rgba(255,180,0,0.6),
+                         0 0 40px rgba(255,120,0,0.4); 
+            margin-bottom: 0.2rem; 
+            line-height: 1.05;
+            animation: heroTitlePulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroTitlePulse {
+            from { transform: scale(1); text-shadow: 3px 3px 0px rgba(0,0,0,0.35), 0 0 25px rgba(255,180,0,0.6), 0 0 40px rgba(255,120,0,0.4); }
+            to   { transform: scale(1.03); text-shadow: 3px 3px 0px rgba(0,0,0,0.4), 0 0 35px rgba(255,200,0,0.8), 0 0 50px rgba(255,150,0,0.6); }
         }
         
         .hero-image-subtitle { 
-            font-size: 0.95rem; /* Smaller to match reference */
-            color: rgba(255, 255, 255, 0.85); /* Lighter, slightly transparent */
-            margin-top: 0.1rem; 
-            margin-bottom: 2.5rem; /* More space before Charizard */
-            opacity: 1;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+            font-size: 1.1rem; 
+            color: #FFDAB9; /* Peach Puff - a softer fiery accent */
+            margin-top: 0.3rem; 
+            margin-bottom: 2rem; 
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
             font-weight: 500; 
         }
 
         .charizard-image { 
-            max-width: 380px; /* Adjusted size to match reference image */
-            width: 60%;      
+            max-width: 550px; /* Bigger Charizard */
+            width: 75%;      
             height: auto;
-            margin-top: 0; 
-            margin-bottom: 2.5rem; /* Space between Charizard and the bar */
-            animation: subtleDragonPulse 3.5s ease-in-out infinite;
-            filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.3));
+            margin-top: 1rem; 
+            margin-bottom: -50px; /* Overlap with the bar below */
+            animation: charizardHover 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
             z-index: 10; 
             position: relative;
         }
         
-        @keyframes subtleDragonPulse { 
-            0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.02) translateY(-5px); } /* More subtle pulse */
+        @keyframes charizardHover { 
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.03); } /* More hover effect */
+            100% { transform: translateY(0px) scale(1); }
         }
 
-        /* Full-width Market Cap Bar */
-        .image-replication-bottom-bar-wrapper {
-            width: 100%;
-            padding: 0; /* No padding on the wrapper itself if bar handles it */
-            margin-top: auto; /* Pushes to bottom of flex container if hero is tall */
-            position: relative;
-            z-index: 5;
-            display: flex;
-            justify-content: center; /* Center the bar content if bar itself has max-width */
-        }
-
+        /* Market Cap Bar - Not full width, under Charizard */
         .image-replication-bottom-bar {
             display: flex;
             align-items: center;
-            width: 100%; /* Full width */
-            /* max-width: 1200px; */ /* Optional: if you want to constrain content width on very large screens */
-            background-color: #A23F0C; /* Darker orange from reference */
-            padding: 1.5rem 2rem; /* Taller bar - adjust as needed */
-            border-radius: 12px; /* Kept rounded corners as per new image */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25); 
+            width: 90%; 
+            max-width: 750px; /* Max width for the bar */
+            background-color: #8B0000; /* Dark red, like embers/cooled lava */
+            padding: 1.3rem 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4), inset 0 2px 5px rgba(0,0,0,0.3); 
             gap: 1.5rem;
-            /* Ensure it's placed after Charizard in the flex flow of .hero */
+            margin-top: 0; /* Will be positioned by Charizard's margin */
+            position: relative;
+            z-index: 5; /* Below Charizard if overlapping */
         }
 
         .ir-current-value {
-            font-size: 1.8rem; /* Adjusted to reference image */
+            font-size: 2.1rem; 
             font-weight: bold;
             color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 0px 0px 7px rgba(255,255,255,0.3), 1px 1px 3px rgba(0,0,0,0.6);
             white-space: nowrap;
-            margin-right: 1rem; /* Space between value and progress area */
+            margin-right: 1rem; 
         }
 
         .ir-progress-area { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
-        .ir-progress-track { width: 100%; height: 7px; background-color: #6D2A08; border-radius: 4px; position: relative; margin-bottom: 0.5rem; }
-        .ir-progress-fill { height: 100%; background-color: #F3952A; border-radius: 4px; position: relative; }
-        .ir-progress-thumb { width: 15px; height: 15px; background-color: white; border: 2px solid #F3952A; /* Orange border on white thumb */ border-radius: 50%; position: absolute; right: 0px; top: 50%; transform: translate(50%, -50%); box-shadow: 0 0 5px rgba(0,0,0,0.3); }
+        .ir-progress-track { width: 100%; height: 8px; background-color: #5A0000; border-radius: 5px; position: relative; margin-bottom: 0.6rem; }
+        .ir-progress-fill { height: 100%; background-color: #FF7700; border-radius: 5px; position: relative; }
+        .ir-progress-thumb { width: 17px; height: 17px; background-color: #FFD700; border: 2px solid white; border-radius: 50%; position: absolute; right: 0px; top: 50%; transform: translate(50%, -50%); box-shadow: 0 0 7px rgba(255,255,100,0.6); }
         .ir-milestones { display: flex; justify-content: space-between; width: 100%; padding: 0 1px; }
-        .ir-milestones span { font-size: 0.75rem; color: rgba(255,255,255,0.75); opacity: 1; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+        .ir-milestones span { font-size: 0.8rem; color: #FFDAB9; opacity: 0.85; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
         
+        /* Lore Section Styling (Re-integrated) */
+        .lore-section {
+            padding: 4rem 2rem; 
+            max-width: 850px;
+            margin: 3rem auto; /* Good spacing after hero */
+            text-align: center;
+            background: rgba(0,0,0,0.4); 
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(255,100,0,0.25), inset 0 0 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,165,0,0.2);
+            position: relative; /* For z-index if needed */
+            z-index: 1;
+        }
+
+        .lore-title {
+            font-size: 3rem; 
+            margin-bottom: 2.5rem;
+            color: #FFC300; /* Bright Gold */
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6), 0 0 20px rgba(255,180,0,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .lore-text {
+            font-size: 1.2rem; 
+            line-height: 1.8;
+            opacity: 1; /* Full opacity for readability */
+            margin-bottom: 1.8rem;
+            color: #f5f5f5; /* Brighter off-white */
+        }
+        .lore-text strong { 
+            color: #FFB347; /* Light Orange for $BEAM */
+            font-weight: bold;
+        }
+        .lore-emphasis {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #FFB347;
+            margin: 2rem 0;
+            display: block; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .lore-final-call {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FF7700; /* Bright Orange */
+            margin-top: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+        .lore-final-call .emoji {
+            font-size: 2rem; 
+            vertical-align: middle;
+            margin: 0 0.3em;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero { padding-top: 70px; }
-            .hero-main-title-text { font-size: 3.5rem; }
-            .hero-image-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
-            .charizard-image { max-width: 320px; margin-bottom: 2rem; }
-            .image-replication-bottom-bar { padding: 1.2rem 1.5rem; border-radius: 10px; flex-direction: column; gap: 0.8rem;}
-            .ir-current-value { font-size: 1.6rem; margin-right: 0; margin-bottom: 0.5rem; }
-            .ir-progress-area { width: 90%; } /* Constrain progress area on column stack */
-            .ir-milestones span { font-size: 0.7rem; }
+            .hero { padding-top: 80px; padding-bottom: 2rem; }
+            .hero-main-title-text { font-size: 4rem; }
+            .hero-image-subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+            .charizard-image { max-width: 420px; margin-bottom: -40px; }
+            .image-replication-bottom-bar { flex-direction: column; gap: 1rem; padding: 1rem 1.5rem; max-width: 90%; }
+            .ir-current-value { font-size: 1.8rem; }
+            .ir-progress-area { width: 100%; }
+            .lore-title { font-size: 2.5rem; }
+            .lore-text { font-size: 1.1rem; }
+            .lore-emphasis { font-size: 1.25rem; }
+            .lore-final-call { font-size: 1.3rem; }
         }
 
         @media (max-width: 480px) {
-            .hero { padding-top: 60px; padding-bottom: 1rem; }
-            .hero-main-title-text { font-size: 2.5rem; }
-            .hero-image-subtitle { font-size: 0.8rem; margin-bottom: 1.5rem; }
-            .charizard-image { max-width: 240px; margin-bottom: 1.5rem; }
-            .image-replication-bottom-bar { padding: 1rem 1rem; border-radius: 8px; }
-            .ir-current-value { font-size: 1.4rem; }
-            .ir-progress-thumb { width: 13px; height: 13px;}
-            .ir-progress-track { height: 6px; }
-            .ir-milestones span { font-size: 0.65rem; }
+            body { background-size: 600% 600%; } /* Adjust for smaller screens if needed */
+            .hero { padding-top: 70px; padding-bottom: 1.5rem; }
+            .hero-main-title-text { font-size: 3rem; letter-spacing: 0.03em; }
+            .hero-image-subtitle { font-size: 0.9rem; margin-bottom: 1rem; }
+            .charizard-image { max-width: 320px; width: 85%; margin-bottom: -30px; }
+            .image-replication-bottom-bar { padding: 0.8rem 1rem; max-width: 95%; }
+            .ir-current-value { font-size: 1.6rem; margin-right: 0; margin-bottom: 0.3rem; }
+            .ir-milestones span { font-size: 0.7rem; }
+            .lore-title { font-size: 2.2rem; }
+            .lore-text, .lore-emphasis, .lore-final-call { font-size: 1rem; }
+            .lore-final-call .emoji { font-size: 1.6rem; }
         }
         
-        /* Footer - Simplified as it's not in focus for this layout */
         .footer {
-            background: rgba(0,0,0,0.1);
-            padding: 1.5rem 1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 2rem 1.5rem;
             text-align: center;
             margin-top: 2rem; 
-            position: relative; /* Ensure it's on top of particles if they extend */
-            z-index: 2;
+            border-top: 1px solid rgba(255,165,0,0.2);
+            position: relative;
+            z-index: 1;
         }
-        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .social-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
         .social-link {
-            color: rgba(255,255,255,0.7); text-decoration: none; padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white; text-decoration: none; padding: 0.7rem 1.3rem;
+            background: rgba(255, 120, 0, 0.3);
+            border: 1px solid rgba(255, 120, 0, 0.6);
             border-radius: 6px; transition: all 0.3s ease;
-            font-size: 0.85rem;
+            font-weight: 500; font-size: 0.9rem;
         }
-        .social-link:hover { background: rgba(255,255,255,0.1); color: white; }
-        .footer p { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+        .social-link:hover { background: rgba(255,100,0,0.6); transform: translateY(-2px) scale(1.03); box-shadow: 0 0 12px rgba(255,100,0,0.4); }
+        .footer p { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
         
-        /* Evolution Animation Overlay (kept but might be unused with current layout focus) */
         .evolution-animation {position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(200,50,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column;}
-        .evolution-text {font-size: 3.5rem; font-weight: bold; animation: evolutionGlow 1s ease-in-out infinite alternate; text-shadow: 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #f70; }
-        @keyframes evolutionGlow { from { opacity: 0.8; transform: scale(1); } to { opacity: 1; transform: scale(1.05); } }
+        .evolution-text {font-size: 3.5rem; font-weight: bold; animation: evolutionPulseGlow 1s ease-in-out infinite alternate; text-shadow: 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #f70; }
+        @keyframes evolutionPulseGlow { from { opacity: 0.8; transform: scale(1); } to { opacity: 1; transform: scale(1.05); } }
 
     </style>
 </head>
@@ -243,29 +313,46 @@
         <p class="hero-image-subtitle">Only on HyperEVM</p>
         <img src="images/assets_task_01jwasnjs1f1ya51be2d5czmq1_1748414206_img_0.webp" alt="Charizard" class="charizard-image">
         
-        <!-- Wrapper for full-width bar -->
-        <div class="image-replication-bottom-bar-wrapper">
-            <div class="image-replication-bottom-bar">
-                <div class="ir-current-value">$500,000</div> <!-- Value from new image -->
-                <div class="ir-progress-area">
-                    <div class="ir-progress-track">
-                        <!-- Width to match $500k on a 1M scale -->
-                        <div class="ir-progress-fill" style="width: 50%;">  
-                            <div class="ir-progress-thumb"></div>
-                        </div>
+        <div class="image-replication-bottom-bar">
+            <div class="ir-current-value">$500,000</div> 
+            <div class="ir-progress-area">
+                <div class="ir-progress-track">
+                    <div class="ir-progress-fill" style="width: 50%;">  
+                        <div class="ir-progress-thumb"></div>
                     </div>
-                    <div class="ir-milestones">
-                        <span>$100K</span>
-                        <span>$500K</span>
-                        <span>$500K</span> <!-- Keeping duplicate as per image -->
-                        <span>1M</span>
-                    </div>
+                </div>
+                <div class="ir-milestones">
+                    <span>$100K</span>
+                    <span>$500K</span>
+                    <span>$500K</span> 
+                    <span>1M</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Lore Section has been removed to match the new reference image -->
+    <section class="lore-section">
+        <h2 class="lore-title">The Legend of HyperBeam</h2>
+        <p class="lore-text">
+            In the molten core of the EVM blockchain—where smart contracts ignite and liquidity flows like lava—a forgotten force stirs once more.
+        </p>
+        <p class="lore-text">
+            HyperBeam (<strong>$BEAM</strong>) is no ordinary meme coin. It is the blazing rebirth of The Last Flame, a legendary spark that once set the old financial world ablaze. Banished by centralized powers, it lay dormant… until now.
+        </p>
+        <p class="lore-text">
+            Forged in digital fire and fueled by pure hopium, this dragon of destruction rises again. With every surge in market cap, our beast evolves, growing stronger, more fearsome, more financially unhinged.
+        </p>
+        <p class="lore-text">
+            From the crackling shell of CharHatch, through the smoldering might of CharGrind, to the unstoppable fury of OmegaBeamZard—each form marks a new chapter in the prophecy of flame.
+        </p>
+        <p class="lore-emphasis">This isn't just a token.</p>
+        <p class="lore-emphasis">A cult.</p>
+        <p class="lore-emphasis">A crusade.</p>
+        <p class="lore-emphasis">A hyper-financial ascension.</p>
+        <p class="lore-final-call">
+            <span class="emoji">🔥</span> Join the flame. Feed the beast. Witness the final evolution. <span class="emoji">🔥</span>
+        </p>
+    </section>
 
     <div class="evolution-animation" id="evolutionOverlay">
         <div class="evolution-text">EVOLUTION UNLOCKED!</div>
@@ -286,16 +373,19 @@
         function createFireParticles() {
             const container = document.getElementById('fireParticles');
             if (!container) return; 
-            const maxParticles = 30; // Reduced for less clutter with new bg
-            const creationInterval = 250; 
+            const maxParticles = 50; // Increased particle density
+            const creationInterval = 150; // Faster creation
             setInterval(() => {
                 if (document.querySelectorAll('.particle').length < maxParticles) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
                     particle.style.left = Math.random() * 100 + '%';
-                    const duration = (Math.random() * 5 + 7); // 7-12s duration
-                    particle.style.animationDelay = (Math.random() * duration * 0.5).toFixed(2) + 's'; 
+                    const duration = (Math.random() * 6 + 8); // 8-14s duration for longer float
+                    particle.style.animationDelay = (Math.random() * duration * 0.3).toFixed(2) + 's'; 
                     particle.style.animationDuration = duration.toFixed(2) + 's'; 
+                    // Randomize initial horizontal drift for particles to spread out
+                    particle.style.setProperty('--random-drift', (Math.random() * 60 - 30) + 'px'); // Used in animation keyframes if needed
+
                     container.appendChild(particle);
                     setTimeout(() => { if (particle.parentNode) particle.parentNode.removeChild(particle); }, duration * 1000 + 500); 
                 }
@@ -308,7 +398,7 @@
             
             let currentValue;
             const adminSetValue = localStorage.getItem('adminMarketCap');
-            const defaultStartValue = 500000; // Default to match new image
+            const defaultStartValue = 500000; 
 
             if (adminSetValue !== null && !isNaN(parseFloat(adminSetValue))) {
                 currentValue = parseFloat(adminSetValue);
@@ -330,11 +420,11 @@
                 checkConceptualEvolution(value, conceptualEvolutionMilestones);
             }
             
-            updateDisplay(currentValue); // Initial display update
+            updateDisplay(currentValue); 
 
             setInterval(() => {
                 const adminOverrideActive = localStorage.getItem('adminMarketCap') !== null;
-                let latestValue = currentValue; // Start with current value for this interval
+                let latestValue = currentValue; 
 
                 if (adminOverrideActive) {
                     const freshAdminValue = localStorage.getItem('adminMarketCap');
@@ -342,26 +432,18 @@
                         latestValue = parseFloat(freshAdminValue);
                     }
                 } else {
-                    // Only apply random changes if no admin override is active
-                    // And if the currentValue is still the default (or was last the default)
-                    // This prevents random changes if admin sets a value then clears it, unless we want that.
-                    // For this version, let's assume if admin cleared, we revert to default and then simulate.
                     if (currentValue === defaultStartValue || localStorage.getItem('lastRunWasDefault') === 'true') {
-                        const change = (Math.random() - 0.45) * 10000; // Slightly larger change for simulation
+                        const change = (Math.random() - 0.45) * 15000; // Simulation change
                         latestValue = Math.max(10000, currentValue + change);
-                        localStorage.setItem('lastRunWasDefault', 'true');
+                        localStorage.setItem('lastRunWasDefault', 'true'); // Mark that simulation is running
                     } else {
-                        // If it was an admin value, and now cleared, it might just stick to the last known admin value
-                        // or reset to default. Let's ensure it uses the default simulation path if cleared.
-                        // This logic can get complex depending on desired behavior after clearing admin.
-                        // Simplest: if cleared, it will pick up `defaultStartValue` on next full page load.
-                        // Or, if we want immediate simulation after clearing:
-                        // latestValue = defaultStartValue; // Reset and then simulate from default
-                        // localStorage.setItem('lastRunWasDefault', 'true');
+                         // If admin cleared, it may stick to last known admin val or reset
+                         // For simplicity, if cleared, it takes one page refresh or next interval might pick up default
+                         // if not explicitly handled to reset to defaultStartValue immediately here.
                     }
                 }
                 
-                currentValue = latestValue; // Update the global currentValue for next interval
+                currentValue = latestValue; 
                 updateDisplay(currentValue);
 
             }, 3000);
@@ -409,12 +491,12 @@
                 const rect = charizardImg.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
                     const cX = rect.left + rect.width/2, cY = rect.top + rect.height/2;
-                    const dX = (e.clientX - cX)*0.015, dY = (e.clientY - cY)*0.015; // Slightly more sensitivity
-                    const rY = Math.max(-6,Math.min(6,dX)), rX = Math.max(-6,Math.min(6,-dY));
-                    charizardImg.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.02)`; 
+                    const dX = (e.clientX - cX)*0.015, dY = (e.clientY - cY)*0.015; 
+                    const rY = Math.max(-7,Math.min(7,dX)), rX = Math.max(-7,Math.min(7,-dY)); // Increased tilt range
+                    charizardImg.style.transform = `perspective(1200px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.03)`; 
                 }
             });
-            document.addEventListener('mouseleave', () => { charizardImg.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02)`; });
+            document.addEventListener('mouseleave', () => { charizardImg.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)`; }); // Reset scale on leave
         }
     </script>
 </body>
