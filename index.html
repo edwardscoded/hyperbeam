@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperBeam ($BEAM) - The Meme Coin on Hyper EVM</title>
+    <title>HyperBeam ($BEAM) - Only on HyperEVM</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif; /* Using Arial as specified. For a closer match to the image, a specific font might be needed. */
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #FF4500, #FF6600, #FF8C00);
             color: white;
             overflow-x: hidden;
@@ -67,7 +67,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .buy-button {
+        .buy-button { /* Header buy button */
             background: linear-gradient(45deg, #FF4500, #FF6600);
             color: white;
             padding: 0.8rem 2rem;
@@ -90,28 +90,26 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: flex-start; 
             align-items: center;
             text-align: center;
-            padding: 6rem 2rem 2rem;
+            padding: 6rem 1rem 2rem; /* Adjusted side padding */
             position: relative;
         }
         
-        /* NEW: Styling for HYPERBEAM text title */
         .hero-main-title-text {
-            font-size: 5.5rem; /* Adjust size to match visual preference */
-            font-weight: 900; /* Very bold */
+            font-size: 5.5rem; 
+            font-weight: 900; 
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.05em; /* Adds a bit of spacing like the image */
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2), /* Basic depth shadow */
-                         0 0 10px rgba(255,100,0,0.3); /* Subtle orange outer glow */
-            margin-bottom: 0.15rem; /* Reduced margin to bring subtitle closer */
+            letter-spacing: 0.05em; 
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2), 
+                         0 0 10px rgba(255,100,0,0.3); 
+            margin-bottom: 0.15rem; 
             line-height: 1.0;
-            animation: glow 2s ease-in-out infinite alternate; /* Re-using glow animation */
+            animation: glow 2s ease-in-out infinite alternate; 
         }
 
-        /* Re-using glow animation, filter: drop-shadow works well on text too */
         @keyframes glow {
             from { 
                 filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 15px rgba(255, 190, 0, 0.4)); 
@@ -121,47 +119,24 @@
             }
         }
         
-        /* Subtitle styling (text content changed in HTML) */
         .hero-image-subtitle { 
             font-size: 1.1rem; 
             color: white;
-            margin-top: 0.2rem; /* Small space after main title */
-            margin-bottom: 1.2rem; 
+            margin-top: 0.2rem; 
+            margin-bottom: 1.5rem; /* Increased margin after removing button */
             opacity: 0.95;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-            font-weight: 500; /* Slightly less bold than main title */
-        }
-
-        .hero-buy-sbeam-button {
-            background: #F3732A; 
-            border: 1px solid #F3732A; 
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 8px; 
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            margin-bottom: 1.5rem; 
-            font-size: 0.95rem;
-            text-transform: uppercase;
-        }
-
-        .hero-buy-sbeam-button:hover {
-            background: #FF8C00; 
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            font-weight: 500; 
         }
 
         .charizard-image { 
-            max-width: 380px; 
-            width: 65%; 
+            max-width: 480px; /* Made Charizard bigger */
+            width: 75%;      /* Made Charizard bigger */
             height: auto;
             margin-top: 0.5rem; 
-            margin-bottom: 1rem; 
+            margin-bottom: -40px; /* Negative margin to pull the bar up under its feet */
             animation: dragonPulse 3s ease-in-out infinite;
-            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
             z-index: 10; 
             position: relative;
         }
@@ -171,17 +146,21 @@
             50% { transform: scale(1.03); }
         }
 
+        /* Bottom bar with marketcap and milestones */
         .image-replication-bottom-bar {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Center content if bar is wider */
             width: 90%;
-            max-width: 600px; 
-            margin-top: auto; 
-            padding-bottom: 1.5rem; 
-            gap: 1rem; 
+            max-width: 650px; /* Slightly wider bar */
+            margin-top: 0; /* Adjusted to be pulled up by Charizard's negative margin */
+            padding: 1rem 1.5rem; /* Added padding inside the bar */
+            gap: 1.5rem; /* Increased gap */
             position: relative; 
-            z-index: 5;
+            z-index: 5; /* Below Charizard */
+            background-color: #BF4C0A; /* Darker orange background */
+            border-radius: 12px; /* Rounded corners for the bar */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* Shadow for depth */
         }
 
         .ir-current-value {
@@ -202,7 +181,7 @@
         .ir-progress-track {
             width: 100%;
             height: 7px; 
-            background-color: #A54714; 
+            background-color: #A54714; /* Kept original track color, contrasts with new bar bg */
             border-radius: 4px;
             position: relative;
             margin-bottom: 0.6rem; 
@@ -246,62 +225,59 @@
         /* Responsive Adjustments for Hero Section */
         @media (max-width: 768px) {
             .hero-main-title-text {
-                font-size: 4rem; /* Adjust title size */
+                font-size: 4rem; 
                 margin-bottom: 0.1rem;
             }
             .hero-image-subtitle {
                 font-size: 1rem;
-                margin-bottom: 1rem;
-            }
-            .hero-buy-sbeam-button {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.85rem;
-                margin-bottom: 1rem;
+                margin-bottom: 1rem; /* Space before larger Charizard */
             }
             .charizard-image {
-                max-width: 280px;
-                width: 60%;
+                max-width: 380px; /* Adjust Charizard size for tablets */
+                width: 70%;
+                margin-bottom: -30px; /* Adjust overlap */
+            }
+            .image-replication-bottom-bar {
+                flex-direction: column; 
+                gap: 0.8rem; /* Reduced gap for column layout */
+                padding: 0.8rem 1rem;
+                max-width: 90%;
             }
             .ir-current-value {
                 font-size: 1.6rem;
             }
-            .ir-milestones span {
-                font-size: 0.75rem;
-            }
-            .image-replication-bottom-bar {
-                flex-direction: column; 
-                gap: 0.5rem;
-                padding-bottom: 1rem;
-            }
             .ir-progress-area {
                 width: 100%;
+            }
+            .ir-milestones span {
+                font-size: 0.75rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero {
-                padding: 5rem 1rem 1rem; 
+                padding: 5rem 0.5rem 1.5rem; /* Adjust padding */
             }
              .hero-main-title-text {
-                font-size: 3rem; /* Further adjust title size */
+                font-size: 2.8rem; /* Further adjust title size */
                 letter-spacing: 0.02em;
             }
             .hero-image-subtitle {
                 font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-            }
-            .hero-buy-sbeam-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                margin-bottom: 0.5rem; /* Space before Charizard */
             }
             .charizard-image {
-                max-width: 200px;
-                width: 65%;
-                margin-bottom: 0.5rem;
+                max-width: 280px; /* Adjust Charizard size for mobile */
+                width: 80%;
+                margin-bottom: -20px; /* Adjust overlap for smaller Charizard */
+            }
+            .image-replication-bottom-bar {
+                max-width: 95%;
+                padding: 0.6rem 0.8rem;
             }
             .ir-current-value {
                 font-size: 1.4rem;
-                margin-bottom: 0.25rem;
+                margin-bottom: 0.1rem; /* Space if in column */
             }
             .ir-milestones span {
                 font-size: 0.65rem;
@@ -317,53 +293,8 @@
         }
 
 
-        /* Dragon Container (from original, can be unhidden if needed elsewhere) */
-        .dragon-container {
-           /* display: none; */ 
-            position: relative;
-            width: 400px;
-            height: 400px;
-            margin: 2rem 0;
-        }
-
-        .dragon {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FF4500, #FF8C00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            animation: dragonPulse 3s ease-in-out infinite;
-            box-shadow: 0 0 50px rgba(255, 69, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Market Cap Display (from original, can be unhidden if needed elsewhere) */
-        .market-cap {
-            /* display: none; */ 
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1.5rem 3rem;
-            border-radius: 20px;
-            margin: 2rem 0;
-            border: 2px solid rgba(255, 69, 0, 0.5);
-        }
-
-        .market-cap-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #FFD700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .market-cap-label {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
+        /* Dragon Container & Market Cap (original, commented out in Hero) */
+        .dragon-container, .market-cap { display: none; } /* Hiding these for now */
 
         /* --- Remaining CSS (Evolution Tracker, Lore, Footer, etc. - Unchanged) --- */
         .evolution-section { padding: 4rem 2rem; background: rgba(0, 0, 0, 0.2); }
@@ -386,7 +317,7 @@
         .social-link:hover { background: rgba(255,69,0,0.4); transform: translateY(-2px); }
         .evolution-animation {position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(255,69,0,0.9); z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column;}
         .evolution-text {font-size: 3rem; font-weight: bold; animation: evolutionGlow 1s ease-in-out infinite alternate;}
-        @keyframes evolutionGlow { from {text-shadow: 0 0 20px rgba(255,255,255,0.8);} to {text-shadow: 0 0 40px rgba(255,255,255,1);}}
+        /* @keyframes evolutionGlow defined earlier for hero title, re-using would be fine or define separately if different */
 
     </style>
 </head>
@@ -402,19 +333,13 @@
 
     <!-- Hero Section - Modified -->
     <section class="hero">
-        <!-- HYPERBEAM Text Title -->
         <h1 class="hero-main-title-text">HYPERBEAM</h1>
-        
-        <!-- Subtitle (Text Changed) -->
         <p class="hero-image-subtitle">Only on HyperEVM</p>
         
-        <!-- BUY SBEAM Button -->
-        <a href="#" class="hero-buy-sbeam-button" onclick="buyBeam()">BUY SBEAM</a>
-        
-        <!-- Charizard Image -->
+        <!-- Charizard Image (No button before it now) -->
         <img src="images/assets_task_01jwasnjs1f1ya51be2d5czmq1_1748414206_img_0.webp" alt="Charizard" class="charizard-image">
         
-        <!-- Bottom Progress Bar Section from Image -->
+        <!-- Bottom Progress Bar Section with new background and position -->
         <div class="image-replication-bottom-bar">
             <div class="ir-current-value">$15,200</div>
             <div class="ir-progress-area">
@@ -431,17 +356,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Original .dragon-container and .market-cap (can be un-commented if needed elsewhere) -->
-        <!--
-        <div class="dragon-container">
-            <div class="dragon" id="dragon">🐲</div>
-        </div>
-        <div class="market-cap">
-            <div class="market-cap-value" id="marketCap">$15,200</div>
-            <div class="market-cap-label">Current Market Cap</div>
-        </div>
-        -->
     </section>
 
     <!-- Evolution Tracker (Unchanged) -->
@@ -516,7 +430,6 @@
             const container = document.getElementById('fireParticles');
             if (!container) return; 
             
-            let particleCount = 0;
             const maxParticles = 30; 
             const creationInterval = 250; 
 
@@ -539,7 +452,6 @@
         }
 
         function updateMarketCap() {
-            const marketCapElement = document.getElementById('marketCap'); 
             const irMarketCapElement = document.querySelector('.ir-current-value'); 
             const progressBar = document.getElementById('progressBar'); 
             const irProgressBarFill = document.querySelector('.ir-progress-fill'); 
@@ -558,9 +470,6 @@
                 
                 const formattedValue = `$${Math.floor(currentValue).toLocaleString()}`;
 
-                if (marketCapElement) { 
-                    marketCapElement.textContent = formattedValue;
-                }
                 if (irMarketCapElement) { 
                     irMarketCapElement.textContent = formattedValue;
                 }
@@ -591,15 +500,14 @@
             const milestonesElements = document.querySelectorAll('.evolution-section .milestone');
             const milestoneValues = [10000, 100000, 500000, 1000000, 5000000];
             const evolutionNames = ['🔥 CharHatch', '🔥 CharGrind', '🔥 CharBlaze', '🔥 MegaCharBurst', '🔥 OmegaBeamZard'];
-            const dragonEmojis = ['🥚','🐲', '🐉', '🔥', '💥'];
+            // const dragonEmojis = ['🥚','🐲', '🐉', '🔥', '💥']; // Original dragon emojis for reference if you reinstate that feature
 
             milestoneValues.forEach((value, index) => {
                 if (milestonesElements[index] && marketCap >= value && !milestonesElements[index].classList.contains('achieved')) {
                     triggerEvolution(evolutionNames[index]);
                     milestonesElements[index].classList.add('achieved');
-                    if (dragonEmojis[index]) { 
-                         updateDragon(dragonEmojis[index]); 
-                    }
+                    // If you had a visual dragon to update, it would go here
+                    // if (dragonEmojis[index]) { updateDragon(dragonEmojis[index]); }
                 }
             });
         }
@@ -618,19 +526,11 @@
             }, 3000);
         }
 
-        function updateDragon(emoji) {
-            const dragonElement = document.getElementById('dragon'); 
-            if (dragonElement) {
-                dragonElement.textContent = emoji;
-                dragonElement.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    dragonElement.style.transform = 'scale(1)';
-                }, 500);
-            }
-        }
+        // updateDragon function can be removed if .dragon-container is not used
+        // function updateDragon(emoji) { ... } 
 
         function buyBeam() {
-            alert('🔥 Redirecting to buy $BEAM / SBEAM! 🔥');
+            alert('🔥 Redirecting to buy $BEAM! 🔥'); // Changed from SBEAM since hero button was removed
         }
 
         document.addEventListener('DOMContentLoaded', function() {
