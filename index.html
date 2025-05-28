@@ -93,7 +93,7 @@
             justify-content: flex-start;
             align-items: center;
             text-align: center;
-            padding: 8rem 2rem 2rem;
+            padding: 6rem 2rem 2rem;
             position: relative;
         }
 
@@ -107,10 +107,18 @@
             line-height: 1;
         }
 
-        .hero-title-image {
-            max-width: 80%;
+        .charizard-image {
+            max-width: 400px;
             height: auto;
-            margin-bottom: 1rem;
+            margin: 1rem 0 2rem;
+            animation: dragonPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .hero-title-image {
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 2rem;
             animation: glow 2s ease-in-out infinite alternate;
             filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.5));
         }
@@ -331,7 +339,11 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title-image {
-                max-width: 90%;
+                max-width: 75%;
+            }
+            
+            .charizard-image {
+                max-width: 300px;
             }
             
             .dragon-container {
@@ -350,7 +362,11 @@
 
         @media (max-width: 480px) {
             .hero-title-image {
-                max-width: 95%;
+                max-width: 85%;
+            }
+            
+            .charizard-image {
+                max-width: 250px;
             }
         }
 
@@ -394,7 +410,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <img src="images/c53bd509-bb20-4654-9e4f-4318c3978625.png" alt="HYPERBEAM" class="hero-title-image">
-        <p class="hero-subtitle">The Meme Coin on Hyper EVM</p>
+        
+        <img src="images/assets_task_01jwasnjs1f1ya51be2d5czmq1_1748414206_img_0.webp" alt="Charizard" class="charizard-image">
         
         <div class="dragon-container">
             <div class="dragon" id="dragon">
